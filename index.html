@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Mangala GP PMAY Details</title>
+
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1a4fcf">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mangala PMAY">
+    <link rel="apple-touch-icon" href="https://ui-avatars.com/api/MGP/180/1a4fcf/fff.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://ui-avatars.com/api/MGP/192/1a4fcf/fff.png">
+
+    <style>
+        /* ----- RESET & GLOBAL ----- */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f5f7fe 0%, #eef2f9 100%);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0.75rem 0.75rem 1.5rem;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #1e293b;
+            -webkit-font-smoothing: antialiased;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ----- MAIN CARD CONTAINER ----- */
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px -8px rgba(0, 20, 50, 0.12), 0 4px 10px -4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(2px);
+        }
+
+        /* ----- HEADER BANNER ----- */
+        .header-banner {
+            background: linear-gradient(105deg, #1a4fcf 0%, #2b5fdf 100%);
+            color: white;
+            padding: 1.5rem 1.25rem 1.2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .header-banner h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0 2.5rem;
+        }
+
+        .header-banner h2 i {
+            font-size: 1.15rem;
+            opacity: 0.95;
+        }
+
+        /* Sync button positioned at top-right of header */
+        .sync-btn {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.15s, transform 0.15s;
+            flex-shrink: 0;
+        }
+
+        .sync-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .sync-btn.spinning i {
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-banner p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 0.35rem;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* ----- SEARCH BAR ----- */
+        .search-wrapper {
+            width: 100%;
+            padding: 0.9rem 0.9rem 0.2rem;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 60px;
+            padding: 0.15rem 0.3rem 0.15rem 0.9rem;
+            transition: border 0.15s, box-shadow 0.15s, background 0.15s;
+        }
+
+        .search-box:focus-within {
+            border-color: #1a4fcf;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(26, 79, 207, 0.1);
+        }
+
+        .search-box i.fa-magnifying-glass {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-right: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 0.6rem 0;
+            font-size: 0.9rem;
+            color: #0f172a;
+            outline: none;
+            font-family: inherit;
+            min-width: 0;
+        }
+
+        .search-box input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .search-clear {
+            background: #cbd5e1;
+            color: #ffffff;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: background 0.15s;
+            flex-shrink: 0;
+            margin-right: 0.15rem;
+        }
+
+        .search-clear.visible {
+            display: flex;
+        }
+
+        /* ----- CARDS LIST ----- */
+        .cards-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 0.75rem 1.5rem;
+            max-height: 64dvh;
+            max-height: 64vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .cards-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ----- BENEFICIARY CARD ----- */
+        .card {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #e9eef6;
+            border-radius: 20px;
+            padding: 1rem 1.1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(26, 79, 207, 0.04);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+            outline: 1px solid transparent;
+        }
+
+        .card:focus-visible {
+            border-color: #b7c9f0;
+            box-shadow: 0 12px 20px -10px rgba(26, 79, 207, 0.2);
+            outline: none;
+        }
+
+        .card:active {
+            transform: scale(0.99);
+        }
+
+        .card-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 0.6rem;
+        }
+
+        .card-name {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: #0b1e3a;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+            word-break: break-word;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .right-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.4rem;
+            flex-shrink: 0;
+        }
+
+        .id-badge,
+        .ward-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.7rem;
+            border-radius: 30px;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+            background: #f0f5ff;
+            color: #1a4fcf;
+            border: 1px solid #d9e2f8;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .id-badge i,
+        .ward-badge i {
+            font-size: 0.65rem;
+            opacity: 0.8;
+        }
+
+        .ward-badge {
+            background: #eef2ff;
+            color: #4338ca;
+            border-color: #d0d9ff;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            font-size: 0.9rem;
+            color: #2d3a4e;
+        }
+
+        .relation-text {
+            font-weight: 600;
+            color: #1e2b3c;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .relation-text i {
+            font-size: 0.85rem;
+            color: #64748b;
+            width: 1rem;
+            text-align: center;
+        }
+
+        .address-text {
+            color: #475569;
+            font-size: 0.88rem;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.35rem;
+            word-break: break-word;
+        }
+
+        .address-text i {
+            font-size: 0.85rem;
+            color: #64748b;
+            width: 1rem;
+            text-align: center;
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+        }
+
+        /* stage line on card */
+        .stage-line {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            margin-top: 0.1rem;
+            flex-wrap: wrap;
+        }
+
+        .stage-line i {
+            font-size: 0.8rem;
+            color: #64748b;
+            width: 1rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .stage-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            max-width: 100%;
+            word-break: break-word;
+        }
+
+        .stage-badge.empty {
+            background: #f1f5f9;
+            color: #94a3b8;
+            border-color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        /* ----- MOBILE ACTION BUTTONS ----- */
+        .mobile-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.82rem;
+            font-weight: 650;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1.5px solid transparent;
+            letter-spacing: 0.01em;
+            flex-shrink: 0;
+        }
+
+        .action-btn i {
+            font-size: 0.85rem;
+        }
+
+        .btn-call {
+            background: #eef4ff;
+            color: #1a4fcf;
+            border-color: #d9e2f8;
+        }
+
+        .btn-whatsapp {
+            background: #e7f9ee;
+            color: #128c3e;
+            border-color: #c5ecd3;
+        }
+
+        .action-btn.disabled {
+            opacity: 0.45;
+            pointer-events: none;
+            filter: grayscale(0.4);
+        }
+
+        /* ----- NO RESULTS ----- */
+        .no-results {
+            text-align: center;
+            color: #64748b;
+            padding: 2rem 1rem;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .no-results i {
+            font-size: 1.6rem;
+            color: #cbd5e1;
+        }
+
+        /* ----- MODAL ----- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 20, 40, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            z-index: 1000;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .modal-overlay::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 400px;
+            max-height: 85dvh;
+            max-height: 85vh;
+            background: #ffffff;
+            border-radius: 28px;
+            overflow-y: auto;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.35);
+            animation: modalPop 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .modal-box::-webkit-scrollbar {
+            display: none;
+        }
+
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(105deg, #1a4fcf 0%, #2b5fdf 100%);
+            color: white;
+            padding: 1rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            word-break: break-word;
+            padding-right: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .modal-header h3 i {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .modal-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .edit-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.15s;
+            flex-shrink: 0;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.15s;
+            flex-shrink: 0;
+            font-weight: 400;
+            padding-bottom: 2px;
+        }
+
+        /* modal body */
+        .modal-body {
+            padding: 1.3rem 1.2rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 0.9rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            min-width: 0;
+        }
+
+        .detail-item.full-width {
+            grid-column: span 2;
+        }
+
+        .detail-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #64748b;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .detail-label i {
+            font-size: 0.7rem;
+            width: 0.9rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .detail-value {
+            font-size: 0.92rem;
+            color: #0f172a;
+            font-weight: 500;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        .badge-pill {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            background: #eef2ff;
+            color: #1e3a8a;
+            border: 1px solid transparent;
+        }
+
+        .badge-stage {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .badge-cat {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* GPS button & map */
+        .gps-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            background: #1a4fcf;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            padding: 0.9rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 650;
+            cursor: pointer;
+            transition: background 0.15s, opacity 0.15s;
+            margin-top: 0.4rem;
+            letter-spacing: 0.01em;
+            box-shadow: 0 4px 10px rgba(26, 79, 207, 0.25);
+        }
+
+        .gps-btn i {
+            font-size: 0.95rem;
+        }
+
+        .gps-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            opacity: 0.75;
+            box-shadow: none;
+        }
+
+        .map-preview {
+            width: 100%;
+            height: 140px;
+            border: 1px solid #dbe2f0;
+            border-radius: 18px;
+            margin-top: 0.6rem;
+            display: none;
+            background: #f8fafc;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .map-preview.active {
+            display: block;
+        }
+
+        #modalLocation {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            background: #f1f5f9;
+            padding: 0.4rem 0.7rem;
+            border-radius: 16px;
+            color: #1e293b;
+            letter-spacing: -0.01em;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* ----- EDIT MODAL ----- */
+        .edit-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 20, 40, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            z-index: 1100;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .edit-modal-overlay::-webkit-scrollbar {
+            display: none;
+        }
+
+        .edit-modal-overlay.active {
+            display: flex;
+        }
+
+        .edit-modal-box {
+            width: 100%;
+            max-width: 380px;
+            max-height: 85dvh;
+            max-height: 85vh;
+            background: #ffffff;
+            border-radius: 28px;
+            overflow-y: auto;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.35);
+            animation: modalPop 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .edit-modal-box::-webkit-scrollbar {
+            display: none;
+        }
+
+        .edit-modal-header {
+            background: linear-gradient(105deg, #1a4fcf 0%, #2b5fdf 100%);
+            color: white;
+            padding: 1rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .edit-modal-header h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .edit-modal-header h3 i {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .edit-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.15s;
+            flex-shrink: 0;
+            padding-bottom: 2px;
+        }
+
+        .edit-modal-body {
+            padding: 1.3rem 1.2rem 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .edit-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .edit-field label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .edit-field label i {
+            font-size: 0.7rem;
+            width: 0.9rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .edit-field input,
+        .edit-field textarea {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 0.92rem;
+            font-family: inherit;
+            color: #0f172a;
+            background: #f8fafc;
+            transition: border 0.15s, box-shadow 0.15s;
+            outline: none;
+        }
+
+        .edit-field input:focus,
+        .edit-field textarea:focus {
+            border-color: #1a4fcf;
+            box-shadow: 0 0 0 3px rgba(26, 79, 207, 0.1);
+            background: #ffffff;
+        }
+
+        .edit-field textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .edit-actions button {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 650;
+            cursor: pointer;
+            border: none;
+            transition: background 0.15s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .edit-actions button:active {
+            transform: scale(0.98);
+        }
+
+        .btn-cancel {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-save {
+            background: #1a4fcf;
+            color: white;
+            box-shadow: 0 4px 10px rgba(26, 79, 207, 0.25);
+        }
+
+        .btn-save i,
+        .btn-cancel i {
+            font-size: 0.9rem;
+        }
+
+        /* loading / empty */
+        .loading-message,
+        .no-records {
+            text-align: center;
+            color: #64748b;
+            padding: 2rem 1rem;
+            font-size: 0.95rem;
+            background: #f8fafc;
+            border-radius: 30px;
+            margin: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .loading-message i,
+        .no-records i {
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        /* toast notification */
+        .toast {
+            position: fixed;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #1e293b;
+            color: #ffffff;
+            padding: 0.75rem 1.3rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s, transform 0.25s;
+            z-index: 2000;
+            max-width: 90vw;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            background: #059669;
+        }
+
+        .toast.error {
+            background: #dc2626;
+        }
+
+        /* ===== PWA INSTALL BANNER ===== */
+        .install-banner {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(140%);
+            width: calc(100% - 1.5rem);
+            max-width: 400px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 0.85rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 15px 35px -8px rgba(0, 20, 50, 0.25), 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9eef6;
+            z-index: 1500;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .install-banner.visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .install-banner-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #1a4fcf, #2b5fdf);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(26, 79, 207, 0.3);
+        }
+
+        .install-banner-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25;
+            min-width: 0;
+        }
+
+        .install-banner-text strong {
+            font-size: 0.88rem;
+            color: #0b1e3a;
+            font-weight: 700;
+        }
+
+        .install-banner-text span {
+            font-size: 0.72rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .install-banner-btn {
+            background: #1a4fcf;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 0.95rem;
+            border-radius: 40px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s;
+            flex-shrink: 0;
+            letter-spacing: 0.01em;
+        }
+
+        .install-banner-close {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            cursor: pointer;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.15s, color 0.15s;
+            flex-shrink: 0;
+        }
+
+        /* Offline indicator pill */
+        .offline-pill {
+            position: fixed;
+            top: 0.75rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-120%);
+            background: #dc2626;
+            color: #fff;
+            padding: 0.4rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            z-index: 1600;
+            box-shadow: 0 8px 20px -4px rgba(220, 38, 38, 0.4);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: 0.02em;
+        }
+
+        .offline-pill.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ----- HOVER EFFECTS (pointer devices only) ----- */
+        @media (hover: hover) and (pointer: fine) {
+            .card:hover {
+                transform: translateY(-2px);
+                border-color: #b7c9f0;
+                box-shadow: 0 12px 20px -10px rgba(26, 79, 207, 0.2);
+            }
+
+            .action-btn:hover {
+                transform: translateY(-1px);
+            }
+
+            .btn-call:hover {
+                background: #1a4fcf;
+                color: #ffffff;
+                border-color: #1a4fcf;
+                box-shadow: 0 4px 10px rgba(26, 79, 207, 0.25);
+            }
+
+            .btn-whatsapp:hover {
+                background: #25d366;
+                color: #ffffff;
+                border-color: #25d366;
+                box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            }
+
+            .edit-btn:hover,
+            .close-btn:hover,
+            .edit-close-btn:hover {
+                background: rgba(255, 255, 255, 0.35);
+            }
+
+            .install-banner-btn:hover {
+                background: #153fa8;
+            }
+
+            .install-banner-close:hover {
+                background: #f1f5f9;
+                color: #475569;
+            }
+
+            .search-clear:hover {
+                background: #94a3b8;
+            }
+
+            .gps-btn:hover:not(:disabled) {
+                background: #153fa8;
+            }
+
+            .btn-cancel:hover {
+                background: #e2e8f0;
+            }
+
+            .btn-save:hover {
+                background: #153fa8;
+            }
+        }
+
+        /* Prevent sticky hover on touch devices */
+        @media (hover: none) {
+            .card:hover,
+            .action-btn:hover,
+            .btn-call:hover,
+            .btn-whatsapp:hover,
+            .edit-btn:hover,
+            .close-btn:hover,
+            .edit-close-btn:hover,
+            .install-banner-btn:hover,
+            .install-banner-close:hover,
+            .search-clear:hover,
+            .gps-btn:hover:not(:disabled),
+            .btn-save:hover,
+            .btn-cancel:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+
+        /* micro adjustment */
+        @media (max-width: 360px) {
+            body {
+                padding: 0.5rem;
+                font-size: 14px;
+            }
+            .container {
+                border-radius: 22px;
+            }
+            .card {
+                padding: 0.85rem;
+            }
+            .card-name {
+                font-size: 1rem;
+            }
+            .id-badge, .ward-badge {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.5rem;
+            }
+            .modal-body {
+                padding: 1rem;
+                gap: 0.8rem;
+            }
+            .detail-value {
+                font-size: 0.85rem;
+            }
+            .modal-header h3 {
+                font-size: 1rem;
+            }
+            .edit-modal-header h3 {
+                font-size: 0.95rem;
+            }
+            .stage-badge {
+                font-size: 0.68rem;
+                padding: 0.15rem 0.55rem;
+            }
+            .action-btn {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.7rem;
+            }
+            .action-btn i {
+                font-size: 0.78rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== PWA INSTALL BANNER ===== -->
+    <div class="install-banner" id="installBanner" role="dialog" aria-label="Install app">
+        <div class="install-banner-icon"><i class="fas fa-mobile-screen-button"></i></div>
+        <div class="install-banner-text">
+            <strong>Install Mangala GP PMAY</strong>
+            <span>Faster access, works offline</span>
+        </div>
+        <button class="install-banner-btn" id="installBtn">Install</button>
+        <button class="install-banner-close" id="installClose" aria-label="Dismiss">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- ===== OFFLINE INDICATOR ===== -->
+    <div class="offline-pill" id="offlinePill" role="status" aria-live="polite">
+        <i class="fas fa-wifi"></i> You're offline — data may be stale
+    </div>
+
+    <main class="container">
+        <header class="header-banner">
+            <div class="header-top">
+                <h2><i class="fas fa-house-chimney"></i> Mangala GP PMAY</h2>
+                <button class="sync-btn" id="syncBtn" aria-label="Sync data from Google Sheets" title="Sync with Google Sheets">
+                    <i class="fas fa-rotate-right"></i>
+                </button>
+            </div>
+            <p id="totalCount">Loading…</p>
+        </header>
+
+        <!-- ===== SEARCH BAR ===== -->
+        <div class="search-wrapper">
+            <div class="search-box">
+                <i class="fas fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search by name, ID, ward, place…" autocomplete="off" aria-label="Search beneficiaries">
+                <button class="search-clear" id="searchClear" aria-label="Clear search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <section class="cards-list" id="cardContainer" aria-live="polite">
+            <div class="loading-message"><i class="fas fa-spinner fa-spin"></i> Fetching records…</div>
+        </section>
+    </main>
+
+    <!-- ===== DETAIL MODAL ===== -->
+    <div class="modal-overlay" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modalName"><i class="fas fa-user"></i> Beneficiary Details</h3>
+                <div class="modal-header-actions">
+                    <button class="edit-btn" id="editBtn" aria-label="Edit beneficiary">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="close-btn" id="closeBtn" aria-label="Close details">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="detail-item">
+                    <span class="detail-label"><i class="fas fa-hashtag"></i> Beneficiary ID</span>
+                    <span class="detail-value" id="modalId">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label"><i class="fas fa-map-pin"></i> Ward</span>
+                    <span class="detail-value" id="modalWard">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label"><i class="fas fa-user-tag"></i> Related To</span>
+                    <span class="detail-value" id="modalRelated">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label"><i class="fas fa-layer-group"></i> Category</span>
+                    <span class="detail-value">
+                        <span class="badge-pill badge-cat" id="modalCategory">-</span>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label"><i class="fas fa-hard-hat"></i> Construction Stage</span>
+                    <span class="detail-value">
+                        <span class="badge-pill badge-stage" id="modalStage">-</span>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label"><i class="fas fa-phone"></i> Mobile</span>
+                    <span class="detail-value" id="modalMobile">-</span>
+                </div>
+                <div class="detail-item full-width">
+                    <span class="detail-label"><i class="fas fa-location-dot"></i> Address & Place</span>
+                    <span class="detail-value" id="modalAddressPlace">-</span>
+                </div>
+
+                <!-- GPS Section with Map preview -->
+                <div class="detail-item full-width">
+                    <span class="detail-label"><i class="fas fa-satellite-dish"></i> Location / GPS</span>
+                    <span class="detail-value" id="modalLocation">-</span>
+                    <button class="gps-btn" id="captureLocationBtn">
+                        <i class="fas fa-crosshairs"></i> Capture & Save Location
+                    </button>
+                    <iframe class="map-preview" id="mapPreview" frameborder="0" src="" loading="lazy" title="Location map preview"></iframe>
+                </div>
+
+                <div class="detail-item full-width">
+                    <span class="detail-label"><i class="fas fa-note-sticky"></i> Remarks</span>
+                    <span class="detail-value" id="modalRemarks">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== EDIT MODAL ===== -->
+    <div class="edit-modal-overlay" id="editModal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+        <div class="edit-modal-box">
+            <div class="edit-modal-header">
+                <h3 id="editModalTitle"><i class="fas fa-pen"></i> Edit Beneficiary</h3>
+                <button class="edit-close-btn" id="editCloseBtn" aria-label="Close edit form">&times;</button>
+            </div>
+            <div class="edit-modal-body">
+                <div class="edit-field">
+                    <label for="editWard"><i class="fas fa-map-pin"></i> Ward</label>
+                    <input type="text" id="editWard" placeholder="Enter ward" autocomplete="off">
+                </div>
+                <div class="edit-field">
+                    <label for="editMobile"><i class="fas fa-phone"></i> Mobile</label>
+                    <input type="tel" id="editMobile" placeholder="Enter mobile number" autocomplete="off">
+                </div>
+                <div class="edit-field">
+                    <label for="editPlace"><i class="fas fa-location-dot"></i> Place</label>
+                    <input type="text" id="editPlace" placeholder="Enter place" autocomplete="off">
+                </div>
+                <div class="edit-field">
+                    <label for="editRemarks"><i class="fas fa-note-sticky"></i> Remarks</label>
+                    <textarea id="editRemarks" placeholder="Enter remarks"></textarea>
+                </div>
+                <div class="edit-actions">
+                    <button class="btn-cancel" id="editCancelBtn">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button class="btn-save" id="editSaveBtn">
+                        <i class="fas fa-check"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        <i class="fas fa-info-circle"></i>
+        <span id="toastMessage">Message</span>
+    </div>
+
+    <script>
+        // ----- CONFIG -----
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPL1Bdq_H-aXvnkiIzZafY2NlnE_MMVI5ViMqSU2iBQTmjRR-RlSzBTnJRnVHuMfRw/exec";
+
+        let beneficiaries = [];
+        let filteredBeneficiaries = [];
+        let currentActiveItem = null;
+
+        // Detail modal elements
+        const modal = document.getElementById('detailModal');
+        const closeBtn = document.getElementById('closeBtn');
+        const editBtn = document.getElementById('editBtn');
+        const gpsBtn = document.getElementById('captureLocationBtn');
+        const mapPreview = document.getElementById('mapPreview');
+        const modalLocationText = document.getElementById('modalLocation');
+
+        // Edit modal elements
+        const editModal = document.getElementById('editModal');
+        const editCloseBtn = document.getElementById('editCloseBtn');
+        const editCancelBtn = document.getElementById('editCancelBtn');
+        const editSaveBtn = document.getElementById('editSaveBtn');
+        const editWard = document.getElementById('editWard');
+        const editMobile = document.getElementById('editMobile');
+        const editPlace = document.getElementById('editPlace');
+        const editRemarks = document.getElementById('editRemarks');
+
+        // Search elements
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+
+        // Sync + toast elements
+        const syncBtn = document.getElementById('syncBtn');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // ----- TOAST HELPER -----
+        let toastTimer = null;
+        function showToast(message, type = 'info') {
+            clearTimeout(toastTimer);
+            toastMessage.textContent = message;
+            toast.className = 'toast show ' + type;
+
+            let iconClass = 'fa-info-circle';
+            if (type === 'success') iconClass = 'fa-circle-check';
+            if (type === 'error') iconClass = 'fa-circle-exclamation';
+            toast.querySelector('i').className = 'fas ' + iconClass;
+
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2600);
+        }
+
+        // ----- 1. FETCH DATA -----
+        async function fetchBeneficiaries(isSync = false) {
+            const totalCount = document.getElementById('totalCount');
+            const container = document.getElementById('cardContainer');
+
+            if (!isSync) {
+                totalCount.textContent = 'Loading…';
+                container.innerHTML = '<div class="loading-message"><i class="fas fa-spinner fa-spin"></i> Fetching records…</div>';
+            }
+
+            try {
+                // Cache-busting so we get the latest from Sheets
+                const url = SCRIPT_URL + (SCRIPT_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
+                const response = await fetch(url, { cache: 'no-store' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                beneficiaries = await response.json();
+
+                // Re-apply current search filter
+                const query = searchInput.value.trim().toLowerCase();
+                if (query) {
+                    applySearch();
+                } else {
+                    filteredBeneficiaries = [...beneficiaries];
+                    totalCount.textContent = `📋 ${beneficiaries.length} Beneficiaries`;
+                    renderCards();
+                }
+
+                if (isSync) {
+                    showToast(`Synced ${beneficiaries.length} records`, 'success');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                totalCount.textContent = 'Connection error';
+                container.innerHTML = '<div class="no-records"><i class="fas fa-exclamation-triangle"></i> Unable to load records. Please try again.</div>';
+                if (isSync) showToast('Sync failed. Check connection.', 'error');
+            }
+        }
+
+        // ----- 2. RENDER CARDS -----
+        function renderCards() {
+            const container = document.getElementById('cardContainer');
+            container.innerHTML = '';
+
+            if (!filteredBeneficiaries.length) {
+                if (beneficiaries.length === 0) {
+                    container.innerHTML = '<div class="no-records"><i class="fas fa-inbox"></i> No beneficiaries found.</div>';
+                } else {
+                    container.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> No matching beneficiaries found.<br><span style="font-size:0.85rem;">Try a different search term.</span></div>';
+                }
+                return;
+            }
+
+            filteredBeneficiaries.forEach((item) => {
+                const wardDisplay = item.ward ? `W: ${item.ward}` : 'W: -';
+                const locationLine = [item.address, item.place].filter(Boolean).join(', ') || 'No address specified';
+                const stageText = item.stage ? item.stage : 'Not specified';
+                const stageClass = item.stage ? 'stage-badge' : 'stage-badge empty';
+                const mobileDisplay = item.mobile || '—';
+                const hasMobile = !!item.mobile;
+
+                // WhatsApp needs country code prefix — assume India (+91) if 10-digit
+                let whatsappNumber = '';
+                if (hasMobile) {
+                    const digits = String(item.mobile).replace(/\D/g, '');
+                    if (digits.length === 10) {
+                        whatsappNumber = '91' + digits;
+                    } else if (digits.length > 10) {
+                        whatsappNumber = digits;
+                    }
+                }
+                const whatsappUrl = whatsappNumber
+                    ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hello ' + (item.name || '') + ', regarding PMAY beneficiary ID ' + (item.id || '') + '.')}`
+                    : '#';
+
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('aria-label', `Beneficiary ${item.name || 'Unnamed'}, ID ${item.id}`);
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="card-name">${item.name || 'Unnamed'}</span>
+                        <div class="right-header">
+                            <span class="id-badge"><i class="fas fa-hashtag"></i> ${item.id || '—'}</span>
+                            <span class="ward-badge"><i class="fas fa-map-pin"></i> ${wardDisplay}</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="relation-text"><i class="fas fa-user-tag"></i> ${item.related ? 'Related: ' + item.related : '—'}</div>
+                        <div class="address-text"><i class="fas fa-location-dot"></i> ${locationLine}</div>
+                        <div class="stage-line">
+                            <i class="fas fa-hard-hat"></i>
+                            <span class="${stageClass}">${stageText}</span>
+                        </div>
+                        <div class="mobile-actions">
+                            <a href="${hasMobile ? 'tel:' + item.mobile : '#'}"
+                               class="action-btn btn-call ${hasMobile ? '' : 'disabled'}"
+                               onclick="event.stopPropagation()"
+                               aria-label="Call ${mobileDisplay}">
+                                <i class="fas fa-phone"></i> Call
+                            </a>
+                            <a href="${hasMobile ? whatsappUrl : '#'}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="action-btn btn-whatsapp ${hasMobile ? '' : 'disabled'}"
+                               onclick="event.stopPropagation()"
+                               aria-label="WhatsApp ${mobileDisplay}">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.action-btn')) return;
+                    openModal(item);
+                });
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(item);
+                    }
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        // ----- 3. SEARCH -----
+        function applySearch() {
+            const query = searchInput.value.trim().toLowerCase();
+
+            if (!query) {
+                filteredBeneficiaries = [...beneficiaries];
+                searchClear.classList.remove('visible');
+            } else {
+                searchClear.classList.add('visible');
+                filteredBeneficiaries = beneficiaries.filter(item => {
+                    const name = (item.name || '').toLowerCase();
+                    const id = (item.id || '').toString().toLowerCase();
+                    const ward = (item.ward || '').toString().toLowerCase();
+                    const place = (item.place || '').toLowerCase();
+                    const address = (item.address || '').toLowerCase();
+                    const mobile = (item.mobile || '').toString().toLowerCase();
+                    const related = (item.related || '').toLowerCase();
+                    const stage = (item.stage || '').toLowerCase();
+                    const category = (item.category || '').toLowerCase();
+
+                    return name.includes(query) ||
+                           id.includes(query) ||
+                           ward.includes(query) ||
+                           place.includes(query) ||
+                           address.includes(query) ||
+                           mobile.includes(query) ||
+                           related.includes(query) ||
+                           stage.includes(query) ||
+                           category.includes(query);
+                });
+            }
+
+            const totalCount = document.getElementById('totalCount');
+            if (query) {
+                totalCount.textContent = `🔍 ${filteredBeneficiaries.length} of ${beneficiaries.length} records`;
+            } else {
+                totalCount.textContent = `📋 ${beneficiaries.length} Beneficiaries`;
+            }
+
+            renderCards();
+        }
+
+        searchInput.addEventListener('input', applySearch);
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            applySearch();
+            searchInput.focus();
+        });
+
+        // ----- 4. OPEN DETAIL MODAL -----
+        function openModal(data) {
+            currentActiveItem = data;
+
+            document.getElementById('modalName').innerHTML = `<i class="fas fa-user"></i> ${data.name || 'Beneficiary'}`;
+            document.getElementById('modalId').textContent = data.id || '—';
+            document.getElementById('modalWard').textContent = data.ward || '—';
+            document.getElementById('modalRelated').textContent = data.related || '—';
+            document.getElementById('modalCategory').textContent = data.category || '—';
+            document.getElementById('modalStage').textContent = data.stage || '—';
+            document.getElementById('modalMobile').innerHTML = data.mobile
+                ? `<a href="tel:${data.mobile}" style="color:#1a4fcf; text-decoration:none; font-weight:600;">${data.mobile}</a>`
+                : '—';
+
+            const addrPlace = [data.address, data.place].filter(Boolean).join(', ');
+            document.getElementById('modalAddressPlace').textContent = addrPlace || '—';
+            document.getElementById('modalRemarks').textContent = data.remarks || '—';
+
+            updateLocationUI(data.location);
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ----- 5. UPDATE LOCATION & MAP -----
+        function updateLocationUI(locationStr) {
+            if (locationStr) {
+                modalLocationText.textContent = locationStr;
+                const [lat, lng] = locationStr.split(',').map(s => s.trim());
+                if (lat && lng && !isNaN(lat) && !isNaN(lng)) {
+                    mapPreview.src = `https://maps.google.com/maps?q=${lat},${lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+                    mapPreview.classList.add('active');
+                } else {
+                    mapPreview.classList.remove('active');
+                    mapPreview.src = '';
+                }
+            } else {
+                modalLocationText.textContent = 'Not captured';
+                mapPreview.classList.remove('active');
+                mapPreview.src = '';
+            }
+        }
+
+        // ----- 6. SAVE LOCATION -----
+        async function saveLocationToSheet(id, coords) {
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: 'updateLocation', id: id, location: coords })
+                });
+                return await response.json();
+            } catch (err) {
+                console.error('Save error:', err);
+                return { status: 'error', message: err.toString() };
+            }
+        }
+
+        // ----- 7. GPS BUTTON -----
+        gpsBtn.addEventListener('click', () => {
+            if (!navigator.geolocation) {
+                showToast('Geolocation is not supported by your device.', 'error');
+                return;
+            }
+
+            gpsBtn.disabled = true;
+            gpsBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Acquiring…';
+
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const lat = position.coords.latitude.toFixed(6);
+                    const lng = position.coords.longitude.toFixed(6);
+                    const coords = `${lat}, ${lng}`;
+
+                    gpsBtn.innerHTML = '<i class="fas fa-save"></i> Saving…';
+
+                    const res = await saveLocationToSheet(currentActiveItem.id, coords);
+
+                    if (res && res.status === 'success') {
+                        currentActiveItem.location = coords;
+                        updateLocationUI(coords);
+                        showToast('Location saved successfully', 'success');
+                    } else {
+                        showToast('Error: ' + (res ? res.message : 'Unknown error'), 'error');
+                    }
+
+                    gpsBtn.disabled = false;
+                    gpsBtn.innerHTML = '<i class="fas fa-crosshairs"></i> Capture & Save Location';
+                },
+                (error) => {
+                    let errMsg = 'Location access failed.';
+                    if (error.code === error.PERMISSION_DENIED) {
+                        errMsg = 'Location permission denied. Please allow GPS access.';
+                    } else if (error.code === error.POSITION_UNAVAILABLE) {
+                        errMsg = 'GPS signal unavailable. Ensure location services are enabled.';
+                    }
+                    showToast(errMsg, 'error');
+                    gpsBtn.disabled = false;
+                    gpsBtn.innerHTML = '<i class="fas fa-crosshairs"></i> Capture & Save Location';
+                },
+                { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
+            );
+        });
+
+        // ----- 8. DETAIL MODAL CLOSE -----
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentActiveItem = null;
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (editModal.classList.contains('active')) {
+                    closeEditModal();
+                } else if (modal.classList.contains('active')) {
+                    closeModal();
+                }
+            }
+        });
+
+        // ----- 9. EDIT MODAL -----
+        function openEditModal() {
+            if (!currentActiveItem) return;
+
+            editWard.value = currentActiveItem.ward || '';
+            editMobile.value = currentActiveItem.mobile || '';
+            editPlace.value = currentActiveItem.place || '';
+            editRemarks.value = currentActiveItem.remarks || '';
+
+            editModal.classList.add('active');
+        }
+
+        function closeEditModal() {
+            editModal.classList.remove('active');
+        }
+
+        editBtn.addEventListener('click', openEditModal);
+        editCloseBtn.addEventListener('click', closeEditModal);
+        editCancelBtn.addEventListener('click', closeEditModal);
+        editModal.addEventListener('click', (e) => {
+            if (e.target === editModal) closeEditModal();
+        });
+
+        // ----- 10. SAVE EDITED DATA -----
+        async function saveEditToSheet(id, data) {
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'updateBeneficiary',
+                        id: id,
+                        ward: data.ward,
+                        mobile: data.mobile,
+                        place: data.place,
+                        remarks: data.remarks
+                    })
+                });
+                return await response.json();
+            } catch (err) {
+                console.error('Save edit error:', err);
+                return { status: 'error', message: err.toString() };
+            }
+        }
+
+        editSaveBtn.addEventListener('click', async () => {
+            if (!currentActiveItem) return;
+
+            const updatedData = {
+                ward: editWard.value.trim(),
+                mobile: editMobile.value.trim(),
+                place: editPlace.value.trim(),
+                remarks: editRemarks.value.trim()
+            };
+
+            if (updatedData.mobile && !/^\d{10}$/.test(updatedData.mobile)) {
+                showToast('Please enter a valid 10-digit mobile number.', 'error');
+                return;
+            }
+
+            editSaveBtn.disabled = true;
+            editSaveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…';
+
+            const res = await saveEditToSheet(currentActiveItem.id, updatedData);
+
+            if (res && res.status === 'success') {
+                currentActiveItem.ward = updatedData.ward;
+                currentActiveItem.mobile = updatedData.mobile;
+                currentActiveItem.place = updatedData.place;
+                currentActiveItem.remarks = updatedData.remarks;
+
+                // Update detail modal display
+                document.getElementById('modalWard').textContent = updatedData.ward || '—';
+                document.getElementById('modalMobile').innerHTML = updatedData.mobile
+                    ? `<a href="tel:${updatedData.mobile}" style="color:#1a4fcf; text-decoration:none; font-weight:600;">${updatedData.mobile}</a>`
+                    : '—';
+                document.getElementById('modalAddressPlace').textContent =
+                    [currentActiveItem.address, updatedData.place].filter(Boolean).join(', ') || '—';
+                document.getElementById('modalRemarks').textContent = updatedData.remarks || '—';
+
+                // Re-render cards
+                applySearch();
+
+                showToast('Changes saved successfully', 'success');
+                closeEditModal();
+            } else {
+                showToast('Error: ' + (res ? res.message : 'Unknown error'), 'error');
+            }
+
+            editSaveBtn.disabled = false;
+            editSaveBtn.innerHTML = '<i class="fas fa-check"></i> Save Changes';
+        });
+
+        // ----- 11. SYNC BUTTON -----
+        syncBtn.addEventListener('click', async () => {
+            if (syncBtn.disabled) return;
+            syncBtn.disabled = true;
+            syncBtn.classList.add('spinning');
+            try {
+                await fetchBeneficiaries(true);
+            } finally {
+                syncBtn.disabled = false;
+                syncBtn.classList.remove('spinning');
+            }
+        });
+
+        // ----- INIT -----
+        window.addEventListener('DOMContentLoaded', () => fetchBeneficiaries(false));
+    </script>
+
+    <script>
+        /* ============================================================
+           PWA BOOTSTRAP — Service Worker + Install Prompt + Offline UI
+           ============================================================ */
+        (function () {
+            'use strict';
+
+            // ---------- 1) REGISTER SERVICE WORKER ----------
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('./sw.js', { scope: './' })
+                        .then((reg) => {
+                            console.log('[PWA] Service worker registered:', reg.scope);
+                            // Check for updates on each load
+                            reg.update();
+                        })
+                        .catch((err) => {
+                            console.warn('[PWA] Service worker registration failed:', err);
+                        });
+                });
+            }
+
+            // ---------- 2) INSTALL PROMPT (Android / Chrome / Edge) ----------
+            const installBanner = document.getElementById('installBanner');
+            const installBtn    = document.getElementById('installBtn');
+            const installClose  = document.getElementById('installClose');
+            let deferredPrompt  = null;
+
+            // Don't show if user already dismissed or app is installed
+            const DISMISS_KEY = 'pmay_install_dismissed_v2';
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+
+                if (localStorage.getItem(DISMISS_KEY) === '1') return;
+                if (window.matchMedia('(display-mode: standalone)').matches) return;
+                if (window.navigator.standalone === true) return; // iOS already installed
+
+                // Delay slightly so it doesn't feel intrusive
+                setTimeout(() => {
+                    if (installBanner) installBanner.classList.add('visible');
+                }, 1400);
+            });
+
+            if (installBtn) {
+                installBtn.addEventListener('click', async () => {
+                    if (!deferredPrompt) return;
+                    installBanner.classList.remove('visible');
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log('[PWA] Install outcome:', outcome);
+                    deferredPrompt = null;
+                });
+            }
+
+            if (installClose) {
+                installClose.addEventListener('click', () => {
+                    installBanner.classList.remove('visible');
+                    localStorage.setItem(DISMISS_KEY, '1');
+                });
+            }
+
+            // Hide banner if app was installed during session
+            window.addEventListener('appinstalled', () => {
+                console.log('[PWA] App installed');
+                if (installBanner) installBanner.classList.remove('visible');
+                deferredPrompt = null;
+            });
+
+            // ---------- 3) iOS INSTALL HINT (Safari) ----------
+            // iOS doesn't fire beforeinstallprompt — show a manual hint
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isStandaloneIOS = window.navigator.standalone === true;
+
+            if (isIOS && !isStandaloneIOS && localStorage.getItem(DISMISS_KEY) !== '1') {
+                setTimeout(() => {
+                    const banner = document.getElementById('installBanner');
+                    if (!banner) return;
+                    const textEl = banner.querySelector('.install-banner-text span');
+                    const btnEl  = banner.querySelector('.install-banner-btn');
+                    if (textEl) textEl.innerHTML = 'Tap <strong>Share</strong> → <strong>Add to Home Screen</strong>';
+                    if (btnEl) {
+                        btnEl.textContent = 'Got it';
+                        btnEl.onclick = () => {
+                            banner.classList.remove('visible');
+                            localStorage.setItem(DISMISS_KEY, '1');
+                        };
+                    }
+                    banner.classList.add('visible');
+                }, 2200);
+            }
+
+            // ---------- 4) ONLINE / OFFLINE INDICATOR ----------
+            const offlinePill = document.getElementById('offlinePill');
+
+            function updateOnlineStatus() {
+                if (!offlinePill) return;
+                if (navigator.onLine) {
+                    offlinePill.classList.remove('visible');
+                } else {
+                    offlinePill.classList.add('visible');
+                }
+            }
+            window.addEventListener('online',  updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
+            updateOnlineStatus();
+
+            // ---------- 5) OPTIONAL: Log SW controller change ----------
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    console.log('[PWA] New service worker active');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
