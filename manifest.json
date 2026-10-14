@@ -1,0 +1,62 @@
+{
+  "name": "Mangala GP PMAY Details",
+  "short_name": "Mangala PMAY",
+  "description": "Mangala Gram Panchayat PMAY beneficiary details, GPS capture, and field data management.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "/mangala-gp-pmay/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f7fe",
+  "theme_color": "#1a4fcf",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["government", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "https://ui-avatars.com/api/?name=MGP&background=1a4fcf&color=fff&size=192&bold=true&format=png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://ui-avatars.com/api/?name=MGP&background=1a4fcf&color=fff&size=512&bold=true&format=png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://ui-avatars.com/api/?name=MGP&background=1a4fcf&color=fff&size=512&bold=true&format=png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Search Beneficiaries",
+      "short_name": "Search",
+      "description": "Quickly search for a beneficiary",
+      "url": "./index.html?action=search",
+      "icons": [
+        {
+          "src": "https://ui-avatars.com/api/?name=S&background=1a4fcf&color=fff&size=192&bold=true&format=png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}
